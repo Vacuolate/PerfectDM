@@ -260,7 +260,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 		    if(InAct[playerid][ActIn])
 			{
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -286,7 +285,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 		    if(InAct[playerid][ActIn])
 			{
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -312,7 +310,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 		    if(InAct[playerid][ActIn])
 			{
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -340,7 +337,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 			    if(InAct[playerid][TWarPlayerID] == GroveTeam) ActInfo[GrovePlayers]--;
 			    else if(InAct[playerid][TWarPlayerID] == BallasTeam) ActInfo[BallasPlayers]--;
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -397,7 +393,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 		    if(InAct[playerid][ActIn])
 			{
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -423,7 +418,6 @@ public OnPlayerDeath(playerid, killerid, reason)
 		    if(InAct[playerid][ActIn])
 			{
 				InAct[playerid][ActIn] = false;
-				//SpawnPlayer(playerid);
 				ResetPlayerWeapons(playerid);
 				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
 			}
@@ -461,7 +455,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             case 4: cmd_startboom(playerid, "");
             case 5: cmd_startbazooka(playerid, "");
         }
-        //ActInfo[ListItem] = listitem;
         return 1;
     }
 
