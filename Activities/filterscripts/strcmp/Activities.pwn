@@ -15,6 +15,7 @@
 #define TWarActive              4
 #define BoomActive              5
 #define BazookaActive           6
+#define FlameActive				7
 
 //=== Dialog's
 #define DIALOG_ACT              5000
@@ -28,6 +29,7 @@
 #define TWarAutoActReward       7000
 #define BoomAutoActReward       7000
 #define BazookaAutoActReward    7000
+#define FlameAutoActReward		7000
 
 //=== Colors
 #define Aqua    			0x00FFFFFF
@@ -87,6 +89,7 @@ new
 	Twar[21],
 	Boom[21],
 	Bazooka[21],
+	Flame[21],
 	InAct[MAX_PLAYERS][InACT],
 	ActInfo[act],
 	SWarVehicle[30]
@@ -119,81 +122,67 @@ public OnPlayerDisconnect(playerid, reason)
 {
 	if(InAct[playerid][ActIn])
 	{
-		ActInfo[Players]--;
-		if(ActInfo[Players] && ActInfo[Started])
+	    ActInfo[Players]--;
+	    if(ActInfo[Active] == TWarActive)
+		{
+		    if(GetPlayerTeam(playerid) == BallasTeam) ActInfo[BallasPlayers]--;
+            if(GetPlayerTeam(playerid) == GroveTeam) ActInfo[GrovePlayers]--;
+			if(ActInfo[GrovePlayers] >= 1 && !ActInfo[BallasPlayers])
+			{
+			    KillTimer(ActInfo[Timer]);
+				ActInfo[Players] = 0;
+				ActInfo[Active] = 0;
+				ActInfo[Started] = false;
+				ActInfo[ListItem] = -1;
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == GroveTeam)
+				{
+					InAct[i][ActIn] = false;
+					SpawnPlayer(i);
+					ResetPlayerWeapons(i);
+					GivePlayerMoney(i, ActInfo[Reward]);
+					SetPlayerTeam(i, NO_TEAM);
+					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				}
+				ActInfo[BallasPlayers] = 0;
+				ActInfo[GrovePlayers] = 0;
+				Message(-1, Green, "!$%s ניצחה בפעילות וכל שחקניה קיבלו על כך Grove הקבוצה", GetNum(ActInfo[Reward]));
+			}
+			if(ActInfo[BallasPlayers] >= 1 && !ActInfo[GrovePlayers])
+			{
+			    KillTimer(ActInfo[Timer]);
+				ActInfo[Players] = 0;
+				ActInfo[Active] = 0;
+				ActInfo[Started] = false;
+				ActInfo[ListItem] = -1;
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == BallasTeam)
+				{
+					InAct[i][ActIn] = false;
+					SpawnPlayer(i);
+					ResetPlayerWeapons(i);
+					GivePlayerMoney(i, ActInfo[Reward]);
+					SetPlayerTeam(i, NO_TEAM);
+					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				}
+				ActInfo[BallasPlayers] = 0;
+				ActInfo[GrovePlayers] = 0;
+				Message(-1, Purple, "!"green"$%s "purple"ניצחה בפעילות וכל שחקניה קיבלו על כך Ballas הקבוצה", GetNum(ActInfo[Reward]));
+			}
+		}
+		if(ActInfo[Players] == 1 && ActInfo[Started])
 		{
 		    KillTimer(ActInfo[Timer]);
 			ActInfo[Players] = 0;
 			ActInfo[Active] = 0;
 			ActInfo[Started] = false;
 			ActInfo[ListItem] = -1;
-			if(ActInfo[Active] == MiniActive)
+			loop(i) if(InAct[i][ActIn])
 			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
+				InAct[i][ActIn] = false;
+				SpawnPlayer(i);
+				ResetPlayerWeapons(i);
+				GivePlayerMoney(i, ActInfo[Reward]);
+				Message(-1, Yellow, "!"green"$%s "yellow"וקיבל על כך "red"\"%s\" "yellow"המנצח בפעילות הינו", GetNum(ActInfo[Reward]), GetName(i));
 			}
-			else if(ActInfo[Active] == WarActive)
-			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-			else if(ActInfo[Active] == SWarActive)
-			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-			else if(ActInfo[Active] == TWarActive)
-			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא TWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-			else if(ActInfo[Active] == BoomActive)
-			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-			else if(ActInfo[Active] == BazookaActive)
-			{
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(playerid, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-		    return 1;
 		}
 	}
 	return 1;
@@ -221,7 +210,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 				SpawnPlayer(i);
 				ResetPlayerWeapons(i);
 				GivePlayerMoney(playerid, ActInfo[Reward]);
-				Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+				Message(-1, Yellow, "!"green"$%s "yellow"וקיבל על כך "red"\"%s\" "yellow"המנצח בפעילות הינו", GetNum(ActInfo[Reward]), GetName(i));
 			}
 		}
 	}
@@ -240,188 +229,85 @@ public OnPlayerDeath(playerid, killerid, reason)
 {
     if(InAct[playerid][ActIn])
 	{
-		ActInfo[Players]--;
-		if(ActInfo[Active] == MiniActive)
+	    ActInfo[Players]--;
+		InAct[playerid][ActIn] = false;
+		SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
+	    if(ActInfo[Active] == TWarActive && ActInfo[Started])
 		{
-		    if(InAct[playerid][ActIn])
-			{
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-			if(ActInfo[Players] && ActInfo[Started])
-   			{
-				KillTimer(ActInfo[Timer]);
-				ActInfo[Players] = 0;
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[ListItem] = -1;
-    			loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(i, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-		}
-		else if(ActInfo[Active] == WarActive)
-		{
-		    if(InAct[playerid][ActIn])
-			{
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-		    if(ActInfo[Players] && ActInfo[Started])
-   			{
-  				KillTimer(ActInfo[Timer]);
-				ActInfo[Players] = 0;
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[ListItem] = -1;
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(i, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-		}
-		else if(ActInfo[Active] == SWarActive)
-		{
-		    if(InAct[playerid][ActIn])
-			{
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-		    if(ActInfo[Players] && ActInfo[Started])
-   			{
-			    KillTimer(ActInfo[Timer]);
-				ActInfo[Players] = 0;
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[ListItem] = -1;
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(i, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-		}
-		else if(ActInfo[Active] == TWarActive)
-		{
-		    if(InAct[playerid][ActIn])
-			{
-			    if(InAct[playerid][TWarPlayerID] == GroveTeam) ActInfo[GrovePlayers]--;
-			    else if(InAct[playerid][TWarPlayerID] == BallasTeam) ActInfo[BallasPlayers]--;
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-		    loop(i) if(ActInfo[BallasPlayers] > ActInfo[GrovePlayers] && !ActInfo[GrovePlayers] && InAct[i][ActIn])
+		    if(InAct[playerid][TWarPlayerID] == GroveTeam) ActInfo[GrovePlayers]--;
+		    else if(InAct[playerid][TWarPlayerID] == BallasTeam) ActInfo[BallasPlayers]--;
+		    if(ActInfo[BallasPlayers] > ActInfo[GrovePlayers] && !ActInfo[GrovePlayers])
 		    {
 		        KillTimer(ActInfo[Timer]);
 				ActInfo[Players] = 0;
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-	   		 	SpawnPlayer(i);
-				InAct[i][ActIn] = false;
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				Message(-1, Purple, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Ballas הקבוצה", GetNum(ActInfo[Reward]));
-				if(GetPlayerTeam(i) == BallasTeam) GivePlayerMoney(i, ActInfo[Reward]);
-				SetPlayerTeam(i, NO_TEAM);
-				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				loop(i) if(InAct[i][ActIn])
+				{
+	   		 		SpawnPlayer(i);
+					InAct[i][ActIn] = false;
+					if(GetPlayerTeam(i) == BallasTeam) GivePlayerMoney(i, ActInfo[Reward]);
+					SetPlayerTeam(i, NO_TEAM);
+					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				}
+				Message(-1, Purple, "!"green"$%s "purple"ניצחה בפעילות וכל שחקניה קיבלו על כך Ballas הקבוצה", GetNum(ActInfo[Reward]));
+
 		    }
-		    else if(ActInfo[BallasPlayers] < ActInfo[GrovePlayers] && !ActInfo[BallasPlayers] && InAct[i][ActIn])
+		    else if(ActInfo[BallasPlayers] < ActInfo[GrovePlayers] && !ActInfo[BallasPlayers])
 		    {
 		        KillTimer(ActInfo[Timer]);
 				ActInfo[Players] = 0;
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-	   		 	SpawnPlayer(i);
-				InAct[i][ActIn] = false;
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				Message(-1, Green, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Grove הקבוצה", GetNum(ActInfo[Reward]));
-				if(GetPlayerTeam(i) == GroveTeam) GivePlayerMoney(i, ActInfo[Reward]);
-				SetPlayerTeam(i, NO_TEAM);
-				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+	   		 	loop(i) if(InAct[i][ActIn])
+				{
+	   		 		SpawnPlayer(i);
+					InAct[i][ActIn] = false;
+					if(GetPlayerTeam(i) == GroveTeam) GivePlayerMoney(i, ActInfo[Reward]);
+					SetPlayerTeam(i, NO_TEAM);
+					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				}
+				Message(-1, Green, "!$%s ניצחה בפעילות וכל שחקניה קיבלו על כך Grove הקבוצה", GetNum(ActInfo[Reward]));
 		    }
-		    else if(!ActInfo[GrovePlayers] && !ActInfo[BallasPlayers] && InAct[i][ActIn])
+		    else if(!ActInfo[GrovePlayers] && !ActInfo[BallasPlayers])
 		    {
 		        KillTimer(ActInfo[Timer]);
 				ActInfo[Players] = 0;
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-	   		 	SpawnPlayer(i);
-				InAct[i][ActIn] = false;
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				SendClientMessageToAll(Yellow, "! אף קבוצה אינה ניצחה בפעילות");
-				SetPlayerTeam(i, NO_TEAM);
-				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+              	loop(i) if(InAct[i][ActIn])
+              	{
+					SpawnPlayer(i);
+					InAct[i][ActIn] = false;
+					SetPlayerTeam(i, NO_TEAM);
+					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
+				}
+				SendClientMessageToAll(Yellow, ".אף קבוצה אינה ניצחה בפעילות");
 		    }
 		}
-		else if(ActInfo[Active] == BoomActive)
+		if(ActInfo[Players] == 1 && ActInfo[Started])
 		{
-		    if(InAct[playerid][ActIn])
+			KillTimer(ActInfo[Timer]);
+			ActInfo[Players] = 0;
+			ActInfo[Active] = 0;
+			ActInfo[Started] = false;
+			ActInfo[ListItem] = -1;
+			loop(i) if(InAct[i][ActIn])
 			{
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-		    if(ActInfo[Players] && ActInfo[Started])
-   			{
-  				KillTimer(ActInfo[Timer]);
-				ActInfo[Players] = 0;
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[ListItem] = -1;
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(i, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
-			}
-		}
-		else if(ActInfo[Active] == BazookaActive)
-		{
-		    if(InAct[playerid][ActIn])
-			{
-				InAct[playerid][ActIn] = false;
-				ResetPlayerWeapons(playerid);
-				SendClientMessage(playerid, -1, ".יצאת מן הפעילות");
-			}
-		    if(ActInfo[Players] && ActInfo[Started])
-   			{
-  				KillTimer(ActInfo[Timer]);
-				ActInfo[Players] = 0;
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[ListItem] = -1;
-			    loop(i) if(InAct[i][ActIn])
-				{
-					InAct[i][ActIn] = false;
-					SpawnPlayer(i);
-					ResetPlayerWeapons(i);
-					GivePlayerMoney(i, ActInfo[Reward]);
-					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
-				}
+				InAct[i][ActIn] = false;
+				SpawnPlayer(i);
+				ResetPlayerWeapons(i);
+				GivePlayerMoney(i, ActInfo[Reward]);
+    			Message(-1, Yellow, "! "green"$%s "yellow"וקיבל על כך "red"\"%s\" "yellow"המנצח בפעילות הינו", GetNum(ActInfo[Reward]), GetName(i));
 			}
 		}
 	}
@@ -495,13 +381,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    ActInfo[GA] = playerid;
 			ActInfo[atime] = gettime();
 			ActInfo[Players] = 0;
-			ActInfo[Timer] = SetTimer("StartACT", 1000, true);
+			ActInfo[Timer] = SetTimer("StartACT", 900, true);
 			ActInfo[CD] = 30;
 		}
 		
 		Message(-1, Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
-		Message(-1, Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
-		SendClientMessageToAll(Red, "! מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
+		Message(-1, Orange, "!פרס למנצח: %s$", GetNum(ActInfo[Reward]));
+		SendClientMessageToAll(Red, "!מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
 		return SendClientMessageToAll(Orange, "--------------------------------------");
     }
 	return 1;
@@ -766,10 +652,10 @@ public AutoAct()
 		}
 	}
 	Message(-1, Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
-	Message(-1, Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
-	SendClientMessageToAll(Red, "! מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
+	Message(-1, Orange, "!פרס למנצח: %s$", GetNum(ActInfo[Reward]));
+	SendClientMessageToAll(Red, "!מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
 	SendClientMessageToAll(Orange, "----------------------------------");
-	ActInfo[Timer] = SetTimer("StartACT", 1000, true);
+	ActInfo[Timer] = SetTimer("StartACT", 900, true);
 	ActInfo[CD] = 30;
 	return 1;
 }
@@ -777,6 +663,8 @@ public AutoAct()
 //=== Commands
 public OnPlayerCommandText(playerid, cmdtext[])
 {
+    if(!IsPlayerAdmin(playerid) && InAct[playerid][ActIn] && (strcmp("/twarplayers", cmdtext, true) || strcmp("/act", cmdtext, true) || IsPlayerAdmin(playerid) && strcmp("/stopact", cmdtext, true)))
+		return SendClientMessage(playerid, Red, ".אינך יכול לבצע פקודות כאשר אתה בפעילות"), 0;
 	dcmd(act, 3, cmdtext);
 	dcmd(startact, 8, cmdtext);
 	dcmd(stopact, 7, cmdtext);
@@ -874,7 +762,12 @@ dcmd_startact(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-	GetActStatus(Mini, War, Swar, Twar, Boom, Bazooka);
+	if(ActInfo[Active] == MiniActive) Mini = ""green"פועל"white"";
+	else if(ActInfo[Active] == WarActive) War = ""green"פועל"white"";
+	else if(ActInfo[Active] == SWarActive) Swar = ""green"פועל"white"";
+	else if(ActInfo[Active] == TWarActive) Twar = ""green"פועל"white"";
+	else if(ActInfo[Active] == BoomActive) Boom = ""green"פועל"white"";
+	else if(ActInfo[Active] == BazookaActive) Bazooka = ""green"פועל"white"";
 	String[0] = EOS;
 	format(String, sizeof String, "Minigun [/StartMini] - %s\nWar [/StartWar] - %s\nSultan Wars [/StartSWar] - %s\nTeam War [/StartTWar] - %s\nBoom [/StartBoom] - %s\nBazooka [/StartBazooka] - %s", Mini, War, Swar, Twar, Boom, Bazooka);
 	return ShowPlayerDialog(playerid, DIALOG_STARTACT, DIALOG_STYLE_LIST, "פעילויות", String, "הפעל", "ביטול");
@@ -994,27 +887,6 @@ PlayerConnect(playerid)
 {
     GetPlayerName(playerid, GetName(playerid), MAX_PLAYER_NAME);
 	return InAct[playerid][ActIn] = false, 1;
-}
-
-GetActStatus(mini[21], war[21], swar[21], twar[21], boom[21], bazooka[21])
-{
-	if(ActInfo[Active] == MiniActive) mini = ""green"פועל"white"";
-	else if(ActInfo[Active] != MiniActive) mini = ""red"כבוי"white"";
-
-	if(ActInfo[Active] == WarActive) war = ""green"פועל"white"";
-	else if(ActInfo[Active] != WarActive) war = ""red"כבוי"white"";
-
-	if(ActInfo[Active] == SWarActive) swar = ""green"פועל"white"";
-	else if(ActInfo[Active] != SWarActive) swar = ""red"כבוי"white"";
-
-	if(ActInfo[Active] == TWarActive) twar = ""green"פועל"white"";
-	else if(ActInfo[Active] != TWarActive) twar = ""red"כבוי"white"";
-
-	if(ActInfo[Active] == BoomActive) boom = ""green"פועל"white"";
-	else if(ActInfo[Active] != BoomActive) boom = ""red"כבוי"white"";
-
-	if(ActInfo[Active] == BazookaActive) bazooka = ""green"פועל"white"";
-	else if(ActInfo[Active] != BazookaActive) bazooka = ""red"כבוי"white"";
 }
 
 TWarPlayer(playerid)
