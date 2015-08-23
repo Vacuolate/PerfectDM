@@ -53,7 +53,7 @@ public OnFilterScriptInit()
 	PizzaVehicle[6] = AddStaticVehicle(448, -1805.261840, 956.282897, 24.490293, 265.486083, 3, 6);
 	
 	for(new i; i < 7; i++)
-		CreateDynamic3DTextLabel("îùéîú äôéöä", 0xFF0000FF, 0.0, 0.0, 1.2, 25, INVALID_PLAYER_ID, PizzaVehicle[i], 0, 0, -1, -1, 25),
+		CreateDynamic3DTextLabel("Ã®Ã¹Ã©Ã®Ãº Ã¤Ã´Ã©Ã¶Ã¤", 0xFF0000FF, 0.0, 0.0, 1.2, 25, INVALID_PLAYER_ID, PizzaVehicle[i], 0, 0, -1, -1, 25),
 		    PizzaVehicleIn[i] = -1;
 		
 	for(new i; i < MAX_PLAYERS; i++) if(IsPlayerConnected(i))
@@ -117,12 +117,12 @@ public OnPlayerDeath(playerid, killerid, reason)
 		if(killerid != INVALID_PLAYER_ID)
 		{
 		    GivePlayerMoney(killerid, 2500);
-		    format(g_String, sizeof g_String, "[Pizza Mission] >> ! åæëä á 2500$ %s äøâ àú äùç÷ï %s äùç÷ï", GetName(playerid), GetName(killerid));
+		    format(g_String, sizeof g_String, "[Pizza Mission] >> ! Ã¥Ã¦Ã«Ã¤ Ã¡ 2500$ %s Ã¤Ã¸Ã¢ Ã Ãº Ã¤Ã¹Ã§Ã·Ã¯ %s Ã¤Ã¹Ã§Ã·Ã¯", GetName(playerid), GetName(killerid));
 		    SendClientMessageToAll(-1, g_String);
 		}
 		else
 		{
-   			format(g_String, sizeof g_String, "[Pizza Mission] >> ! ğäøâ / éöà îï äøëá %s äùç÷ï", GetName(playerid));
+   			format(g_String, sizeof g_String, "[Pizza Mission] >> ! Ã°Ã¤Ã¸Ã¢ / Ã©Ã¶Ã  Ã®Ã¯ Ã¤Ã¸Ã«Ã¡ %s Ã¤Ã¹Ã§Ã·Ã¯", GetName(playerid));
 		    SendClientMessageToAll(-1, g_String);
 		}
 	}
@@ -139,7 +139,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 			{
 			    pM[playerid][PizzaTime] = 10;
 			    pM[playerid][InPizzaVehicle] = false;
-				return SendClientMessage(playerid, 0xFF0000FF, ".éù ìê 10 ùğéåú ìçæåø ìàåôğåò åìà úôñéã");
+				return SendClientMessage(playerid, 0xFF0000FF, ".Ã©Ã¹ Ã¬Ãª 10 Ã¹Ã°Ã©Ã¥Ãº Ã¬Ã§Ã¦Ã¥Ã¸ Ã¬Ã Ã¥Ã´Ã°Ã¥Ã² Ã¥Ã¬Ã  ÃºÃ´Ã±Ã©Ã£");
 			}
 		}
 	}
@@ -149,20 +149,20 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	    new vehicleid = GetPlayerVehicleID(playerid);
 	    if(PizzaVehicleIn[vehicleid] != playerid && PizzaVehicleIn[vehicleid] != -1)
 	    {
-	        SendClientMessage(playerid, -1, ".éù ùç÷ï ùîáöò îùìåç áàåôğåò æä");
+	        SendClientMessage(playerid, -1, ".Ã©Ã¹ Ã¹Ã§Ã·Ã¯ Ã¹Ã®Ã¡Ã¶Ã² Ã®Ã¹Ã¬Ã¥Ã§ Ã¡Ã Ã¥Ã´Ã°Ã¥Ã² Ã¦Ã¤");
 	        return RemovePlayerFromVehicle(playerid);
 	    }
     	else if(!pM[playerid][InPizza])
     	{
     	    for(new i; i < 7; i++) if(vehicleid == PizzaVehicle[i])
-		    	return ShowPlayerDialog(playerid, DIALOG_PIZZA, DIALOG_STYLE_MSGBOX, "Pizza Mission", "áîùéîä æå úöèøê ìäòáéø îùìåç ôéöä ìáéú ğáçø áæîï\nàí úñôé÷ ìäòáéø àú äôéöä áæîï úæëä áëñó\nàí ìà úñôé÷ úôñéã áîùéîä", "äúçì", "áéèåì");
+		    	return ShowPlayerDialog(playerid, DIALOG_PIZZA, DIALOG_STYLE_MSGBOX, "Pizza Mission", "Ã¡Ã®Ã¹Ã©Ã®Ã¤ Ã¦Ã¥ ÃºÃ¶Ã¨Ã¸Ãª Ã¬Ã¤Ã²Ã¡Ã©Ã¸ Ã®Ã¹Ã¬Ã¥Ã§ Ã´Ã©Ã¶Ã¤ Ã¬Ã¡Ã©Ãº Ã°Ã¡Ã§Ã¸ Ã¡Ã¦Ã®Ã¯\nÃ Ã­ ÃºÃ±Ã´Ã©Ã· Ã¬Ã¤Ã²Ã¡Ã©Ã¸ Ã Ãº Ã¤Ã´Ã©Ã¶Ã¤ Ã¡Ã¦Ã®Ã¯ ÃºÃ¦Ã«Ã¤ Ã¡Ã«Ã±Ã³\nÃ Ã­ Ã¬Ã  ÃºÃ±Ã´Ã©Ã· ÃºÃ´Ã±Ã©Ã£ Ã¡Ã®Ã¹Ã©Ã®Ã¤", "Ã¤ÃºÃ§Ã¬", "Ã¡Ã©Ã¨Ã¥Ã¬");
 		}
 		else
 		{
 		    for(new i; i < 7; i++) if(vehicleid == PizzaVehicle[i])
 		    {
 				pM[playerid][InPizzaVehicle] = true;
-				return SendClientMessage(playerid, -1, ".äîùê áîùéîúê");
+				return SendClientMessage(playerid, -1, ".Ã¤Ã®Ã¹Ãª Ã¡Ã®Ã¹Ã©Ã®ÃºÃª");
 			}
 		}
 	}
@@ -181,7 +181,7 @@ public OnPlayerEnterDynamicRaceCP(playerid, checkpointid)
 	    PizzaVehicleIn[GetPlayerVehicleID(playerid)] = -1;
 	    SetVehicleToRespawn(GetPlayerVehicleID(playerid));
 	    GivePlayerMoney(playerid, 6000);
-		format(g_String, sizeof g_String, "[Pizza Mission] >> ! äöìéç ìäòáéø îùìåç åæä á 6000$ %s äùç÷ï", GetName(playerid));
+		format(g_String, sizeof g_String, "[Pizza Mission] >> ! Ã¤Ã¶Ã¬Ã©Ã§ Ã¬Ã¤Ã²Ã¡Ã©Ã¸ Ã®Ã¹Ã¬Ã¥Ã§ Ã¥Ã¦Ã¤ Ã¡ 6000$ %s Ã¤Ã¹Ã§Ã·Ã¯", GetName(playerid));
 		return SendClientMessageToAll(0xFF0000FF, g_String);
 	}
 	return true;
@@ -190,7 +190,7 @@ public OnPlayerEnterDynamicRaceCP(playerid, checkpointid)
 public OnPlayerCommandText(playerid, cmdtext[])
 {
 	if(pM[playerid][InPizza])
-	    return SendClientMessage(playerid, -1, ".àéğê éëåì ìáöò ô÷åãåú ëàùø àúä áîùéîú äôéöä");
+	    return SendClientMessage(playerid, -1, ".Ã Ã©Ã°Ãª Ã©Ã«Ã¥Ã¬ Ã¬Ã¡Ã¶Ã² Ã´Ã·Ã¥Ã£Ã¥Ãº Ã«Ã Ã¹Ã¸ Ã ÃºÃ¤ Ã¡Ã®Ã¹Ã©Ã®Ãº Ã¤Ã´Ã©Ã¶Ã¤");
 
 	if(!strcmp(cmdtext, "/sf", true))
 	{
@@ -217,12 +217,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		pM[playerid][PizzaSec] = 0;
 		pM[playerid][PizzaTime] = 10;
 		pM[playerid][PizzaCP] = CreateDynamicRaceCP(1, Pos[0], Pos[1], Pos[2], 0.0, 0.0, 0.0, 2.5, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), playerid, 2500);
-		pM[playerid][Pizza3D] = CreateDynamic3DTextLabel("éòã äôéöä", 0xFF0000FF, Pos[0], Pos[1], Pos[2], 2500, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), playerid, 2500);
+		pM[playerid][Pizza3D] = CreateDynamic3DTextLabel("Ã©Ã²Ã£ Ã¤Ã´Ã©Ã¶Ã¤", 0xFF0000FF, Pos[0], Pos[1], Pos[2], 2500, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), playerid, 2500);
         PlayerTextDrawSetString(playerid, pM[playerid][Textdraw][1], "00:00");
 		for(new t; t < 3; t++) PlayerTextDrawShow(playerid, pM[playerid][Textdraw][t]);
 		pM[playerid][PizzaRandomSec] = RandomPizzaSec[random(sizeof RandomPizzaSec)];
 		pM[playerid][PizzaTimer] = SetTimerEx("TimeMission", 950, true, "i", playerid);
-		format(g_String, sizeof g_String, ".éù ìê 01:%02d ìäâéò ìéòã äôéöä", pM[playerid][PizzaRandomSec]);
+		format(g_String, sizeof g_String, ".Ã©Ã¹ Ã¬Ãª 01:%02d Ã¬Ã¤Ã¢Ã©Ã² Ã¬Ã©Ã²Ã£ Ã¤Ã´Ã©Ã¶Ã¤", pM[playerid][PizzaRandomSec]);
 		return SendClientMessage(playerid, 0xFF0000FF, g_String);
 	}
 	return true;
