@@ -1166,7 +1166,7 @@ CMD:stoptwar(playerid, params[])
 	return KillTimer(ActInfo[Timer]);
 }
 
-CMD:twarplayers(playerid, parmas[])
+CMD:twarplayers(playerid, params[])
 {
     if(ActInfo[Active] != TWarActive) return SendClientMessage(playerid, -1, ".הפעילות אינה פועלת כרגע");
     if(!ActInfo[Started]) return SendClientMessage(playerid, -1, ".הפעילות אינה החלה");
