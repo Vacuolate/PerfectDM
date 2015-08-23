@@ -4,15 +4,6 @@
 
 #define loop(%0)					for(new %0, lastid = GetPlayerPoolSize(); %0 < lastid; %0++)
 #define GetName(%0)             	InAct[%0][Name]
-
-#define Message(%0,%1,%2,%3)		format(String, 128, %2, %3); \
-									SendClientMessage(%0, %1, String)
-
-#define MessageToAll(%1,%2,%3)		format(String, 128, %2, %3); \
-									for(new player, lastplayerid = GetPlayerPoolSize(); player < lastplayerid; player++) SendClientMessage(player, %1, String)
-
-#define GameText(%0,%1,%2,%3,%4)	format(String, 128, %1, %4); \
-									GameTextForPlayer(%0, String, %2, %3)
 									
 #define dcmd(%1,%2,%3) 				if(!strcmp((%3)[1], #%1, true, (%2)) && ((((%3)[(%2) + 1] == '\0') && (dcmd_%1(playerid, ""))) || (((%3)[(%2) + 1] == ' ') && (dcmd_%1(playerid, (%3)[(%2) + 2]))))) return 1
 
@@ -28,8 +19,7 @@
 //=== Dialog's
 #define DIALOG_ACT              5000
 #define DIALOG_STARTACT 		5001
-#define DIALOG_STOPACT  		5002
-#define DIALOG_REWARD        	5003
+#define DIALOG_REWARD        	5002
 
 //=== Reward's
 #define MiniAutoActReward       7000
@@ -145,7 +135,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 			else if(ActInfo[Active] == WarActive)
@@ -156,7 +146,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 			else if(ActInfo[Active] == SWarActive)
@@ -167,7 +157,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 			else if(ActInfo[Active] == TWarActive)
@@ -178,7 +168,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא TWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא TWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 			else if(ActInfo[Active] == BoomActive)
@@ -189,7 +179,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 			else if(ActInfo[Active] == BazookaActive)
@@ -200,7 +190,7 @@ public OnPlayerDisconnect(playerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(playerid, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		    return 1;
@@ -231,7 +221,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 				SpawnPlayer(i);
 				ResetPlayerWeapons(i);
 				GivePlayerMoney(playerid, ActInfo[Reward]);
-				MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+				Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 			}
 		}
 	}
@@ -272,7 +262,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(i, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Mini המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		}
@@ -297,7 +287,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(i, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא War המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		}
@@ -322,7 +312,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(i, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא SWar המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		}
@@ -347,7 +337,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				InAct[i][ActIn] = false;
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				MessageToAll(Purple, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Ballas הקבוצה", GetNum(ActInfo[Reward]));
+				Message(-1, Purple, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Ballas הקבוצה", GetNum(ActInfo[Reward]));
 				if(GetPlayerTeam(i) == BallasTeam) GivePlayerMoney(i, ActInfo[Reward]);
 				SetPlayerTeam(i, NO_TEAM);
 				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
@@ -363,7 +353,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				InAct[i][ActIn] = false;
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				MessageToAll(Green, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Grove הקבוצה", GetNum(ActInfo[Reward]));
+				Message(-1, Green, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Grove הקבוצה", GetNum(ActInfo[Reward]));
 				if(GetPlayerTeam(i) == GroveTeam) GivePlayerMoney(i, ActInfo[Reward]);
 				SetPlayerTeam(i, NO_TEAM);
 				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
@@ -405,7 +395,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(i, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Boom המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		}
@@ -430,7 +420,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SpawnPlayer(i);
 					ResetPlayerWeapons(i);
 					GivePlayerMoney(i, ActInfo[Reward]);
-					MessageToAll(Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
+					Message(-1, Yellow, "! וקיבל על כך %s$ %s הוא Bazooka המנצח בפעילות ה", GetNum(ActInfo[Reward]), GetName(i));
 				}
 			}
 		}
@@ -450,20 +440,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             case 3: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/starttwar"); //cmd_starttwar(playerid, "");
             case 4: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/startboom"); //cmd_startboom(playerid, "");
             case 5: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/startbazooka"); //cmd_startbazooka(playerid, "");
-        }
-        return 1;
-    }
-
-    if(dialogid == DIALOG_STOPACT && response)
-    {
-        switch(listitem)
-        {
-            case 0: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stopmini"); //cmd_stopmini(playerid, "");
-            case 1: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stopwar"); //cmd_stopwar (playerid, "");
-            case 2: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stopswar"); //cmd_stopswar(playerid, "");
-            case 3: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stoptwar"); //cmd_stoptwar(playerid, "");
-            case 4: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stopboom"); //cmd_stopboom(playerid, "");
-            case 5: CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/stopbazooka"); //cmd_stopbazooka(playerid, "");
         }
         return 1;
     }
@@ -513,11 +489,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			SendClientMessageToAll(Orange, "------------- Bazooka -------------");
 		}
 
-		MessageToAll(Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
-		MessageToAll(Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
-		SendClientMessageToAll(Red, "! מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
-		SendClientMessageToAll(Orange, "--------------------------------------");
-
 		if(ActInfo[Active] != 0)
 		{
 			KillTimer(ActInfo[Timer]);
@@ -527,7 +498,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			ActInfo[Timer] = SetTimer("StartACT", 1000, true);
 			ActInfo[CD] = 30;
 		}
-        return 1;
+		
+		Message(-1, Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
+		Message(-1, Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
+		SendClientMessageToAll(Red, "! מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
+		return SendClientMessageToAll(Orange, "--------------------------------------");
     }
 	return 1;
 }
@@ -535,274 +510,145 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 public StartACT()
 {
     if(ActInfo[CD] == 15 && (ActInfo[Players] != 30 || ActInfo[Players] != 31)) SendClientMessageToAll(Pink, "/Join נשאר 15 שניות לתחילת הפעילות, הרשמו מהר");
-	if(ActInfo[Active] == MiniActive)
-	{
-    	if(!ActInfo[CD])
-    	{
-    	    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				return SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-			}
-			ActInfo[Started] = true;
-			ActInfo[CD] = 11;
-			new rand;
-			loop(i) if(InAct[i][ActIn])
-			{
-			    rand = random(sizeof MiniSpawns);
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 0);
-				SetPlayerVirtualWorld(i, 10);
-				SetPlayerPos(i, MiniSpawns[rand][0], MiniSpawns[rand][1], MiniSpawns[rand][2]);
-				SetPlayerFacingAngle(i, MiniSpawns[rand][3]);
-				SetCameraBehindPlayer(i);
-				ResetPlayerWeapons(i);
-				GivePlayerWeapon(i, 38, 9000);
-				TogglePlayerControllable(i, false);
-			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
-		}
- 		else
-    	{
-        	GameText(-1, "~y~[] ~r~/Mini %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-    	}
-	}
-
-	else if(ActInfo[Active] == WarActive)
-	{
-    	if(!ActInfo[CD])
-    	{
-    	    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				return SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-			}
-			ActInfo[Started] = true;
-        	ActInfo[CD] = 11;
-			new rand;
-			loop(i) if(InAct[i][ActIn])
-			{
-			    rand = random(sizeof WarSpawns);
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 10);
-				SetPlayerVirtualWorld(i, 10);
-				SetPlayerPos(i, WarSpawns[rand][0], WarSpawns[rand][1], WarSpawns[rand][2]);
-				SetPlayerFacingAngle(i, WarSpawns[rand][3]);
-				SetCameraBehindPlayer(i);
-				ResetPlayerWeapons(i);
-				GivePlayerWeapon(i, random(33-25)+25, 9000);
-				TogglePlayerControllable(i, false);
-			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
-		}
- 		else
-    	{
-        	GameText(-1, "~y~[] ~r~/War %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-    	}
-	}
-
-	else if(ActInfo[Active] == SWarActive)
-	{
-		if(!ActInfo[CD])
+    if(!ActInfo[CD])
+    {
+        KillTimer(ActInfo[Timer]);
+    	if(ActInfo[Players] <= 1)
 		{
-		    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				return SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-			}
-			ActInfo[Started] = true;
-	        ActInfo[CD] = 11;
-			loop(i) if(InAct[i][ActIn])
-			{
-				SetPlayerVirtualWorld(i, 10);
-				SetVehicleVirtualWorld(SWarVehicle[i], 10);
-				PutPlayerInVehicle(i, SWarVehicle[i], 0);
-				Message(i, -1, "VirtualWorld: %d", GetVehicleVirtualWorld(i));
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 0);
-				SetCameraBehindPlayer(i);
-				TogglePlayerControllable(i, false);
-			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
+			ActInfo[Active] = 0;
+			ActInfo[Started] = false;
+			ActInfo[Players] = 0;
+			loop(i) InAct[i][ActIn] = false;
+			return SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
 		}
-	 	else
-	    {
-	        GameText(-1, "~y~[] ~r~/SWar %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-	    }
-	}
-
-	else if(ActInfo[Active] == TWarActive)
-	{
-    	if(!ActInfo[CD])
-    	{
-    	    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				return SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-			}
-			ActInfo[Started] = true;
-        	ActInfo[CD] = 11;
-        	new rand, rand2;
-			loop(i) if(InAct[i][ActIn])
-			{
-			    rand = random(sizeof GrovePos), rand2 = random(sizeof BallasPos);
-			    SetPlayerTeam(i, InAct[i][TWarPlayerID]);
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 10);
-				SetPlayerVirtualWorld(i, 10);
-				if(GetPlayerTeam(i) == GroveTeam)
+		ActInfo[Started] = true;
+		ActInfo[CD] = 11;
+        switch(ActInfo[Active])
+        {
+            case MiniActive:
+            {
+				loop(i) if(InAct[i][ActIn])
 				{
-				    SetPlayerColor(i, Green);
-				    SetPlayerSkin(i, random(107-105)+105);
-					SetPlayerPos(i, GrovePos[rand][0], GrovePos[rand][1], GrovePos[rand][2]);
-					SetPlayerFacingAngle(i, GrovePos[rand][3]);
+				    new rand = random(sizeof MiniSpawns);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 0);
+					SetPlayerVirtualWorld(i, 10);
+					SetPlayerPos(i, MiniSpawns[rand][0], MiniSpawns[rand][1], MiniSpawns[rand][2]);
+					SetPlayerFacingAngle(i, MiniSpawns[rand][3]);
+					SetCameraBehindPlayer(i);
+					ResetPlayerWeapons(i);
+					GivePlayerWeapon(i, 38, 9000);
+					TogglePlayerControllable(i, false);
 				}
-				if(GetPlayerTeam(i) == BallasTeam)
+            }
+			case WarActive:
+			{
+			    loop(i) if(InAct[i][ActIn])
 				{
-				    SetPlayerColor(i, Purple);
-				    SetPlayerSkin(i, random(104-102)+102);
-				    SetPlayerPos(i, BallasPos[rand2][0], BallasPos[rand2][1], BallasPos[rand2][2]);
-					SetPlayerFacingAngle(i, BallasPos[rand2][3]);
+				    new rand = random(sizeof WarSpawns);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 10);
+					SetPlayerVirtualWorld(i, 10);
+					SetPlayerPos(i, WarSpawns[rand][0], WarSpawns[rand][1], WarSpawns[rand][2]);
+					SetPlayerFacingAngle(i, WarSpawns[rand][3]);
+					SetCameraBehindPlayer(i);
+					ResetPlayerWeapons(i);
+					GivePlayerWeapon(i, random(33-25)+25, 9000);
+					TogglePlayerControllable(i, false);
 				}
-				SetCameraBehindPlayer(i);
-				ResetPlayerWeapons(i);
-				GivePlayerWeapon(i, random(33-25)+25, 9000);
-				GivePlayerWeapon(i, random(33-25)+25, 9000);
-				TogglePlayerControllable(i, false);
 			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
+			case SWarActive:
+			{
+                loop(i) if(InAct[i][ActIn])
+				{
+					SetPlayerVirtualWorld(i, 10);
+					SetVehicleVirtualWorld(SWarVehicle[i], 10);
+					PutPlayerInVehicle(i, SWarVehicle[i], 0);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 0);
+					SetCameraBehindPlayer(i);
+					TogglePlayerControllable(i, false);
+				}
+			}
+			case TWarActive:
+			{
+                loop(i) if(InAct[i][ActIn])
+				{
+				    new rand = random(sizeof GrovePos), rand2 = random(sizeof BallasPos);
+				    SetPlayerTeam(i, InAct[i][TWarPlayerID]);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 10);
+					SetPlayerVirtualWorld(i, 10);
+					if(GetPlayerTeam(i) == GroveTeam)
+					{
+					    SetPlayerColor(i, Green);
+					    SetPlayerSkin(i, random(107-105)+105);
+						SetPlayerPos(i, GrovePos[rand][0], GrovePos[rand][1], GrovePos[rand][2]);
+						SetPlayerFacingAngle(i, GrovePos[rand][3]);
+					}
+					if(GetPlayerTeam(i) == BallasTeam)
+					{
+					    SetPlayerColor(i, Purple);
+					    SetPlayerSkin(i, random(104-102)+102);
+					    SetPlayerPos(i, BallasPos[rand2][0], BallasPos[rand2][1], BallasPos[rand2][2]);
+						SetPlayerFacingAngle(i, BallasPos[rand2][3]);
+					}
+					SetCameraBehindPlayer(i);
+					ResetPlayerWeapons(i);
+					GivePlayerWeapon(i, random(33-25)+25, 9000);
+					GivePlayerWeapon(i, random(33-25)+25, 9000);
+					TogglePlayerControllable(i, false);
+				}
+			}
+			case BoomActive:
+			{
+                loop(i) if(InAct[i][ActIn])
+				{
+				    new rand = random(sizeof BoomSpawns);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 0);
+					SetPlayerVirtualWorld(i, 10);
+					SetPlayerPos(i, BoomSpawns[rand][0], BoomSpawns[rand][1], BoomSpawns[rand][2]);
+					SetPlayerFacingAngle(i, BoomSpawns[rand][3]);
+					SetCameraBehindPlayer(i);
+					ResetPlayerWeapons(i);
+					TogglePlayerControllable(i, false);
+				}
+			}
+			case BazookaActive:
+			{
+                loop(i) if(InAct[i][ActIn])
+				{
+				    new rand = random(sizeof BazookaSpawns);
+					SetPlayerHealth(i, 100);
+					SetPlayerArmour(i, 0.0);
+					SetPlayerInterior(i, 15);
+					SetPlayerVirtualWorld(i, 10);
+					SetPlayerPos(i, BazookaSpawns[rand][0], BazookaSpawns[rand][1], BazookaSpawns[rand][2]);
+					SetPlayerFacingAngle(i, BazookaSpawns[rand][3]);
+					SetCameraBehindPlayer(i);
+					GivePlayerWeapon(i, 35, 850);
+					TogglePlayerControllable(i, false);
+				}
+			}
+        }
+        ActInfo[Timer] = SetTimer("ACTStarted", 1000, 1);
+    }
+    else
+    {
+        format(String, 64, "~y~[] ~r~/Join %d: ~b~%d~y~[]", ActInfo[RandomNum], ActInfo[CD]);
+       	GameTextForAll(String, 1000, 4);
+		if(ActInfo[Players] == 30)
+		{
+			SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
+			ActInfo[Players] = 31;
 		}
- 		else
-    	{
-        	GameText(-1, "~y~[] ~r~/TWar %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-    	}
-	}
-
-	else if(ActInfo[Active] == BoomActive)
-	{
-    	if(!ActInfo[CD])
-    	{
-    	    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-				return true;
-			}
-			ActInfo[Started] = true;
-			ActInfo[CD] = 11;
-			new rand;
-			loop(i) if(InAct[i][ActIn])
-			{
-			    rand = random(sizeof BoomSpawns);
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 0);
-				SetPlayerVirtualWorld(i, 10);
-				SetPlayerPos(i, BoomSpawns[rand][0], BoomSpawns[rand][1], BoomSpawns[rand][2]);
-				SetPlayerFacingAngle(i, BoomSpawns[rand][3]);
-				SetCameraBehindPlayer(i);
-				ResetPlayerWeapons(i);
-				TogglePlayerControllable(i, false);
-			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
-		}
- 		else
-    	{
-        	GameText(-1, "~y~[] ~r~/Boom %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-    	}
-	}
-
-	else if(ActInfo[Active] == BazookaActive)
-	{
-    	if(!ActInfo[CD])
-    	{
-    	    KillTimer(ActInfo[Timer]);
-		    if(ActInfo[Players] <= 1)
-			{
-				ActInfo[Active] = 0;
-				ActInfo[Started] = false;
-				ActInfo[Players] = 0;
-				loop(i) InAct[i][ActIn] = false;
-				SendClientMessageToAll(Red, ".הפעילות בוטלה מכיוון שאין מספיק משתתפים");
-				return true;
-			}
-			ActInfo[Started] = true;
-			ActInfo[CD] = 11;
-			new rand;
-			loop(i) if(InAct[i][ActIn])
-			{
-			    rand = random(sizeof BazookaSpawns);
-				SetPlayerHealth(i, 100);
-				SetPlayerArmour(i, 0.0);
-				SetPlayerInterior(i, 15);
-				SetPlayerVirtualWorld(i, 10);
-				SetPlayerPos(i, BazookaSpawns[rand][0], BazookaSpawns[rand][1], BazookaSpawns[rand][2]);
-				SetPlayerFacingAngle(i, BazookaSpawns[rand][3]);
-				SetCameraBehindPlayer(i);
-				GivePlayerWeapon(i, 35, 850);
-				TogglePlayerControllable(i, false);
-			}
-			ActInfo[Timer] = SetTimer("ACTStarted", 1000, true);
-		}
- 		else
-    	{
-        	GameText(-1, "~y~[] ~r~/Bazooka %d: ~b~%d~y~[]", 1000, 4, ActInfo[RandomNum], ActInfo[CD]);
-			if(ActInfo[Players] == 30)
-			{
-				SendClientMessageToAll(Red, ".כל המקומות בפעילות נתפסו");
-				ActInfo[Players] = 31;
-			}
-    	}
-	}
+    }
 	ActInfo[CD]--;
 	return 1;
 }
@@ -919,8 +765,8 @@ public AutoAct()
 			SendClientMessageToAll(Orange, "------------- Bazooka -------------");
 		}
 	}
-	MessageToAll(Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
-	MessageToAll(Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
+	Message(-1, Orange, "/Join %d הפעילות החלה ! - בכדי להרשם לפעילות הקש", ActInfo[RandomNum]);
+	Message(-1, Orange, "! פרס למנצח: %s$", GetNum(ActInfo[Reward]));
 	SendClientMessageToAll(Red, "! מספר המקומות מוגבל לשלושים שחקנים בלבד, הרשמו מהר");
 	SendClientMessageToAll(Orange, "----------------------------------");
 	ActInfo[Timer] = SetTimer("StartACT", 1000, true);
@@ -936,17 +782,11 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	dcmd(stopact, 7, cmdtext);
 	dcmd(join, 4, cmdtext);
 	dcmd(startmini, 9, cmdtext);
-	dcmd(stopmini, 8, cmdtext);
 	dcmd(startwar, 8, cmdtext);
-	dcmd(stopwar, 7, cmdtext);
 	dcmd(startswar, 9, cmdtext);
-	dcmd(stopswar, 8, cmdtext);
-	dcmd(starttwar, 8, cmdtext);
-	dcmd(stoptwar, 7, cmdtext);
+	dcmd(starttwar, 9, cmdtext);
 	dcmd(startboom, 9, cmdtext);
-	dcmd(stopboom, 8, cmdtext);
 	dcmd(startbazooka, 12, cmdtext);
-	dcmd(stopbazooka, 11, cmdtext);
 	dcmd(twarplayers, 11, cmdtext);
 	return 0;
 }
@@ -1044,10 +884,22 @@ dcmd_stopact(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-	GetActStatus(Mini, War, Swar, Twar, Boom, Bazooka);
-	String[0] = EOS;
-	format(String, sizeof String, "Minigun [/StopMini] - %s\nWar [/StopWar] - %s\nSultan Wars [/StopSWar] - %s\nTeam War [/StopTWar] - %s\nBoom [/StopBoom] - %s\nBazooka [/StopBazooka] - %s", Mini, War, Swar, Twar, Boom, Bazooka);
-	return ShowPlayerDialog(playerid, DIALOG_STOPACT, DIALOG_STYLE_LIST, "פעילויות", String, "עצור", "ביטול");
+    if(!ActInfo[Active]) return SendClientMessage(playerid, Red, ".אין פעילות כרגע");
+	ActInfo[Players] = 0;
+	ActInfo[Active] = 0;
+	ActInfo[ListItem] = -1;
+    loop(i) if(InAct[i][ActIn])
+	{
+		if(ActInfo[Started])
+		{
+		    TogglePlayerControllable(i, 1);
+			SpawnPlayer(i);
+		}
+		InAct[i][ActIn] = false;
+	}
+	ActInfo[Started] = false;
+	Message(-1, Red, ".ביטל את הפעילות \"%s\" האדמין", GetName(playerid));
+	return KillTimer(ActInfo[Timer]);
 }
 
 dcmd_join(playerid, params[])
@@ -1077,28 +929,6 @@ dcmd_startmini(playerid, params[])
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Minigun", ".אנא הקש את סכום הכסף שהזוכה יקבל", "הפעל", "חזרה");
 }
 
-dcmd_stopmini(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != MiniActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
-	MessageToAll(Red, ".Mini ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
-	return KillTimer(ActInfo[Timer]);
-}
-
 //================================= [ War ] ====================================
 dcmd_startwar(playerid, params[])
 {
@@ -1107,28 +937,6 @@ dcmd_startwar(playerid, params[])
 	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".יש פעילות שפעולת, המתן לסיומה");
 	ActInfo[ListItem] = 1;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "War", ".אנא הקש את סכום הכסף שהזוכה יקבל", "הפעל", "חזרה");
-}
-
-dcmd_stopwar(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != WarActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
-	MessageToAll(Red, ".War ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
-	return KillTimer(ActInfo[Timer]);
 }
 
 //============================ [ Sultan Wars ] =================================
@@ -1141,28 +949,6 @@ dcmd_startswar(playerid, params[])
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Sultan Wars", ".אנא הקש את סכום הכסף שהזוכה יקבל", "הפעל", "חזרה");
 }
 
-dcmd_stopswar(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != SWarActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
-	MessageToAll(Red, ".Sultan Wars ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
-	return KillTimer(ActInfo[Timer]);
-}
-
 //============================ [ Team War ] ====================================
 dcmd_starttwar(playerid, params[])
 {
@@ -1171,28 +957,6 @@ dcmd_starttwar(playerid, params[])
 	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".יש פעילות שפעולת, המתן לסיומה");
 	ActInfo[ListItem] = 3;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Team War", ".אנא הקש את סכום הכסף שהזוכים יקבלו", "הפעל", "חזרה");
-}
-
-dcmd_stoptwar(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != TWarActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
-	MessageToAll(Red, ".Team War ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
-	return KillTimer(ActInfo[Timer]);
 }
 
 dcmd_twarplayers(playerid, params[])
@@ -1216,28 +980,6 @@ dcmd_startboom(playerid, params[])
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Boom", ".אנא הקש את סכום הכסף שהזוכה יקבל", "הפעל", "חזרה");
 }
 
-dcmd_stopboom(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != BoomActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
- 	MessageToAll(Red, ".Boom ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
- 	return KillTimer(ActInfo[Timer]);
-}
-
 //============================= [ Bazooka ] ====================================
 dcmd_startbazooka(playerid, params[])
 {
@@ -1246,28 +988,6 @@ dcmd_startbazooka(playerid, params[])
 	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".יש פעילות שפעולת, המתן לסיומה");
 	ActInfo[ListItem] = 5;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Bazooka", ".אנא הקש את סכום הכסף שהזוכה יקבל", "הפעל", "חזרה");
-}
-
-dcmd_stopbazooka(playerid, params[])
-{
-    #pragma unused params
-	if(!IsPlayerAdmin(playerid)) return 0;
-    if(ActInfo[Active] != BazookaActive) return SendClientMessage(playerid, Red, ".הפעילות אינה פועלת כרגע");
-	ActInfo[Players] = 0;
-	ActInfo[Active] = 0;
-	ActInfo[ListItem] = -1;
-    loop(i) if(InAct[i][ActIn])
-	{
-		if(ActInfo[Started])
-		{
-		    TogglePlayerControllable(i, true);
-			SpawnPlayer(i);
-		}
-		InAct[i][ActIn] = false;
-	}
-	ActInfo[Started] = false;
-	MessageToAll(Red, ".Bazooka ביטל את פעילות ה \"%s\" האדמין", GetName(playerid));
-	return KillTimer(ActInfo[Timer]);
 }
 
 PlayerConnect(playerid)
@@ -1369,5 +1089,21 @@ stock GetNum(number)
 }
 
 stock rgba2hex(r, g, b, a) return (r*16777216) + (g*65536) + (b*256) + a;
+
+stock Message(playerid, color, form[], {Float, _}: ...)
+{
+    #pragma unused form
+    static tmp[128];
+    new t1 = playerid, t2 = color;
+    const n4 = -4, n16 = -16, size = sizeof tmp;
+    #emit stack 28
+    #emit push.c size
+    #emit push.c tmp
+    #emit stack n4
+    #emit sysreq.c format
+    #emit stack n16
+    if(t1 != -1) return SendClientMessage(t1, t2, tmp);
+    else return SendClientMessageToAll(t2, tmp);
+}
 
 //=== Act על הזמנים של ה make_belive קרדיט ל
