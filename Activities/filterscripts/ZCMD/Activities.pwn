@@ -60,7 +60,6 @@
 //=== Team's
 #define GroveTeam           1
 #define BallasTeam          2
-#define NoTeam              225
 
 //=== News
 enum InACT
@@ -358,7 +357,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				ActInfo[GrovePlayers] = 0;
 				MessageToAll(Purple, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Ballas הקבוצה", GetNum(ActInfo[Reward]));
 				if(GetPlayerTeam(i) == BallasTeam) GivePlayerMoney(i, ActInfo[Reward]);
-				SetPlayerTeam(i, NoTeam);
+				SetPlayerTeam(i, NO_TEAM);
 				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 		    }
 		    else if(ActInfo[BallasPlayers] < ActInfo[GrovePlayers] && !ActInfo[BallasPlayers] && InAct[i][ActIn])
@@ -374,7 +373,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				ActInfo[GrovePlayers] = 0;
 				MessageToAll(Green, "! ניצחה בפעילות וכל שחקניה קיבלו כ %s$ Grove הקבוצה", GetNum(ActInfo[Reward]));
 				if(GetPlayerTeam(i) == GroveTeam) GivePlayerMoney(i, ActInfo[Reward]);
-				SetPlayerTeam(i, NoTeam);
+				SetPlayerTeam(i, NO_TEAM);
 				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 		    }
 		    else if(!ActInfo[GrovePlayers] && !ActInfo[BallasPlayers] && InAct[i][ActIn])
@@ -389,7 +388,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
 				SendClientMessageToAll(Yellow, "! אף קבוצה אינה ניצחה בפעילות");
-				SetPlayerTeam(i, NoTeam);
+				SetPlayerTeam(i, NO_TEAM);
 				SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 		    }
 		}
