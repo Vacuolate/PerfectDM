@@ -3,7 +3,7 @@
 #include <sscanf2>
 #include <Spawns>
 
-#define loop(%0)					for(new %0, lastid = GetPlayerPoolSize(); %0 < lastid; %0++)
+#define loop(%0)					for(new %0, lastid = GetPlayerPoolSize() + 1; %0 < lastid; %0++)
 #define GetName(%0)             	InAct[%0][Name]
 
 #define STARTTIME               15
@@ -14,7 +14,7 @@
 #define TWarActive              4
 #define BoomActive              5
 #define BazookaActive           6
-#define FlameActive           6
+#define FlameActive           	7
 
 //=== Dialog's
 #define DIALOG_ACT              5000
@@ -131,7 +131,7 @@ public OnPlayerDisconnect(playerid, reason)
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == GroveTeam)
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(i) == GroveTeam)
 				{
 					InAct[i][ActIn] = false;
 					SpawnPlayer(i);
@@ -151,7 +151,7 @@ public OnPlayerDisconnect(playerid, reason)
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == BallasTeam)
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(i) == BallasTeam)
 				{
 					InAct[i][ActIn] = false;
 					SpawnPlayer(i);
@@ -557,7 +557,7 @@ public ACTStarted()
 		}
 		else loop(i) if(InAct[i][ActIn])
 		{
-			format(String, 7, "~r~$d", ActInfo[CD]);
+			format(String, 7, "~r~%d", ActInfo[CD]);
 			GameTextForPlayer(i, String, 1000, 4);
 			if(ActInfo[Active] == SWarActive && ActInfo[CD] == 5)
 			{
@@ -802,7 +802,8 @@ CMD:join(playerid, params[])
 		}
 		Message(playerid, -1, "%s", InAct[playerid][TWarPlayerID] == GroveTeam ? (""green"Grove :קבוצה") : (""purple"Ballas :קבוצה"));
 	}
-	return InAct[playerid][ActIn] = true;
+	InAct[playerid][ActIn] = true;
+	return 1;
 }
 
 //============================= [ Minigun ] ====================================

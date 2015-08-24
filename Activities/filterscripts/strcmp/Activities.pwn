@@ -2,7 +2,7 @@
 #include <sscanf2>
 #include <Spawns>
 
-#define loop(%0)					for(new %0, lastid = GetPlayerPoolSize(); %0 < lastid; %0++)
+#define loop(%0)					for(new %0, lastid = GetPlayerPoolSize() + 1; %0 < lastid; %0++)
 #define GetName(%0)             	InAct[%0][Name]
 									
 #define dcmd(%1,%2,%3) 				if(!strcmp((%3)[1], #%1, true, (%2)) && ((((%3)[(%2) + 1] == '\0') && (dcmd_%1(playerid, ""))) || (((%3)[(%2) + 1] == ' ') && (dcmd_%1(playerid, (%3)[(%2) + 2]))))) return 1
@@ -134,7 +134,7 @@ public OnPlayerDisconnect(playerid, reason)
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == GroveTeam)
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(i) == GroveTeam)
 				{
 					InAct[i][ActIn] = false;
 					SpawnPlayer(i);
@@ -154,7 +154,7 @@ public OnPlayerDisconnect(playerid, reason)
 				ActInfo[Active] = 0;
 				ActInfo[Started] = false;
 				ActInfo[ListItem] = -1;
-				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(playerid) == BallasTeam)
+				loop(i) if(InAct[i][ActIn] && GetPlayerTeam(i) == BallasTeam)
 				{
 					InAct[i][ActIn] = false;
 					SpawnPlayer(i);
@@ -552,7 +552,7 @@ public ACTStarted()
 		}
 		else loop(i) if(InAct[i][ActIn])
 		{
-			format(String, 7, "~r~$d", ActInfo[CD]);
+			format(String, 7, "~r~%d", ActInfo[CD]);
 			GameTextForPlayer(i, String, 1000, 4);
 			if(ActInfo[Active] == SWarActive && ActInfo[CD] == 5)
 			{
@@ -806,10 +806,20 @@ dcmd_join(playerid, params[])
 	Message(playerid, Yellow, "[%d/30] .הצטרפת לפעילות", ActInfo[Players]);
 	if(ActInfo[Active] == TWarActive)
 	{
-  		TWarPlayer(playerid);
+  		if(ActInfo[Players] % 2 == 0)
+		{
+			ActInfo[GrovePlayers]++;
+			InAct[playerid][TWarPlayerID] = GroveTeam;
+		}
+		else
+		{
+			ActInfo[BallasPlayers]++;
+			InAct[playerid][TWarPlayerID] = BallasTeam;
+		}
 		Message(playerid, -1, "%s", InAct[playerid][TWarPlayerID] == GroveTeam ? (""green"Grove :קבוצה") : (""purple"Ballas :קבוצה"));
 	}
-	return InAct[playerid][ActIn] = true;
+	InAct[playerid][ActIn] = true;
+	return 1;
 }
 
 //============================= [ Minigun ] ====================================
@@ -887,20 +897,6 @@ PlayerConnect(playerid)
 {
     GetPlayerName(playerid, GetName(playerid), MAX_PLAYER_NAME);
 	return InAct[playerid][ActIn] = false, 1;
-}
-
-TWarPlayer(playerid)
-{
-	if(ActInfo[Players] % 2 == 0)
-	{
-		ActInfo[GrovePlayers]++;
-		InAct[playerid][TWarPlayerID] = GroveTeam;
-	}
-	else
-	{
-		ActInfo[BallasPlayers]++;
-		InAct[playerid][TWarPlayerID] = BallasTeam;
-	}
 }
 
 stock LoadSWarVehicles()
