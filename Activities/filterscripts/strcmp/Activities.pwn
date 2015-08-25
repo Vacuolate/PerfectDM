@@ -148,7 +148,7 @@ public OnPlayerDisconnect(playerid, reason)
 				}
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				Message(-1, Green, "!$%s Χ Χ™Χ¦Χ—Χ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ•Χ›Χ Χ©Χ—Χ§Χ Χ™Χ” Χ§Χ™Χ‘ΧΧ• ΧΆΧ Χ›Χ Grove Χ”Χ§Χ‘Χ•Χ¦Χ”", GetNum(ActInfo[Reward]));
+				Message(-1, Green, "!$%s πιφηδ ατςιμεϊ ελμ δχαεφδ χιαμδ Grove δχαεφδ", GetNum(ActInfo[Reward]));
 			}
 			if(ActInfo[BallasPlayers] >= 1 && !ActInfo[GrovePlayers])
 			{
@@ -168,7 +168,7 @@ public OnPlayerDisconnect(playerid, reason)
 				}
 				ActInfo[BallasPlayers] = 0;
 				ActInfo[GrovePlayers] = 0;
-				Message(-1, Purple, "!"green"$%s "purple"Χ Χ™Χ¦Χ—Χ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ•Χ›Χ Χ©Χ—Χ§Χ Χ™Χ” Χ§Χ™Χ‘ΧΧ• ΧΆΧ Χ›Χ Ballas Χ”Χ§Χ‘Χ•Χ¦Χ”", GetNum(ActInfo[Reward]));
+				Message(-1, Purple, "!"green"$%s "purple"πιφηδ ατςιμεϊ ελμ δχαεφδ χιαμδ Ballas δχαεφδ", GetNum(ActInfo[Reward]));
 			}
 		}
 		if(ActInfo[Players] == 1 && ActInfo[Started])
@@ -184,7 +184,7 @@ public OnPlayerDisconnect(playerid, reason)
 				SpawnPlayer(i);
 				ResetPlayerWeapons(i);
 				GivePlayerMoney(i, ActInfo[Reward]);
-				Message(-1, Yellow, "!"green"$%s "yellow"Χ•Χ§Χ™Χ‘Χ ΧΆΧ Χ›Χ "red"\"%s\" "yellow"Χ”ΧΧ Χ¦Χ— Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ”Χ™Χ Χ•", GetNum(ActInfo[Reward]), GetName(i));
+				Message(-1, Yellow, "!"green"$%s "yellow"πιφη ατςιμεϊ εχιαμ "red"\"%s\" "yellow"δωηχο", GetNum(ActInfo[Reward]), GetName(i));
 			}
 		}
 	}
@@ -199,7 +199,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		SpawnPlayer(playerid);
 	    InAct[playerid][ActIn] = false;
 		ActInfo[Players]--;
-		SendClientMessage(playerid, -1, ".Χ™Χ¦ΧΧª ΧΧ Χ”Χ¨Χ›Χ‘ Χ•ΧΧ›Χ Χ”Χ¤Χ΅Χ“Χª Χ‘Χ¤ΧΆΧ™ΧΧ•Χª, Χ‘Χ”Χ¦ΧΧ—Χ” Χ‘Χ¤ΧΆΧ Χ”Χ‘ΧΧ”");
+		SendClientMessage(playerid, -1, ".ιφΰϊ ξο δψλα εμλο δτργϊ ατςιμεϊ");
 		if(ActInfo[Players])
 		{
 		    KillTimer(ActInfo[Timer]);
@@ -213,7 +213,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 				SpawnPlayer(i);
 				ResetPlayerWeapons(i);
 				GivePlayerMoney(playerid, ActInfo[Reward]);
-				Message(-1, Yellow, "!"green"$%s "yellow"Χ•Χ§Χ™Χ‘Χ ΧΆΧ Χ›Χ "red"\"%s\" "yellow"Χ”ΧΧ Χ¦Χ— Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ”Χ™Χ Χ•", GetNum(ActInfo[Reward]), GetName(i));
+				Message(-1, Yellow, "!"green"$%s "yellow"πιφη ατςιμεϊ εχιαμ "red"\"%s\" "yellow"δωηχο", GetNum(ActInfo[Reward]), GetName(i));
 			}
 		}
 	}
@@ -234,7 +234,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	{
 	    ActInfo[Players]--;
 		InAct[playerid][ActIn] = false;
-		SendClientMessage(playerid, -1, ".Χ™Χ¦ΧΧª ΧΧ Χ”Χ¤ΧΆΧ™ΧΧ•Χª");
+		SendClientMessage(playerid, -1, ".ιφΰϊ ξο δτςιμεϊ");
 	    if(ActInfo[Active] == TWarActive && ActInfo[Started])
 		{
 		    if(InAct[playerid][TWarPlayerID] == GroveTeam) ActInfo[GrovePlayers]--;
@@ -256,7 +256,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SetPlayerTeam(i, NO_TEAM);
 					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 				}
-				Message(-1, Purple, "!"green"$%s "purple"Χ Χ™Χ¦Χ—Χ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ•Χ›Χ Χ©Χ—Χ§Χ Χ™Χ” Χ§Χ™Χ‘ΧΧ• ΧΆΧ Χ›Χ Ballas Χ”Χ§Χ‘Χ•Χ¦Χ”", GetNum(ActInfo[Reward]));
+				Message(-1, Purple, "!"green"$%s "purple"πιφηδ ατςιμεϊ ελμ δχαεφδ χιαμδ Ballas δχαεφδ", GetNum(ActInfo[Reward]));
 
 		    }
 		    else if(ActInfo[BallasPlayers] < ActInfo[GrovePlayers] && !ActInfo[BallasPlayers])
@@ -276,7 +276,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SetPlayerTeam(i, NO_TEAM);
 					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 				}
-				Message(-1, Green, "!$%s Χ Χ™Χ¦Χ—Χ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ•Χ›Χ Χ©Χ—Χ§Χ Χ™Χ” Χ§Χ™Χ‘ΧΧ• ΧΆΧ Χ›Χ Grove Χ”Χ§Χ‘Χ•Χ¦Χ”", GetNum(ActInfo[Reward]));
+				Message(-1, Green, "!$%s πιφηδ ατςιμεϊ ελμ δχαεφδ χιαμδ Grove δχαεφδ", GetNum(ActInfo[Reward]));
 		    }
 		    else if(!ActInfo[GrovePlayers] && !ActInfo[BallasPlayers])
 		    {
@@ -294,10 +294,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 					SetPlayerTeam(i, NO_TEAM);
 					SetPlayerColor(i, rgba2hex(random(256), random(256), random(256), 50));
 				}
-				SendClientMessageToAll(Yellow, ".ΧΧ£ Χ§Χ‘Χ•Χ¦Χ” ΧΧ™Χ Χ” Χ Χ™Χ¦Χ—Χ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª");
+				SendClientMessageToAll(Yellow, ".ΰσ χαεφδ ΰιπδ πιφηδ ατςιμεϊ");
 		    }
 		}
-  		if(ActInfo[Players] == 1 && ActInfo[Started])
+		if(ActInfo[Players] == 1 && ActInfo[Started])
 		{
 			KillTimer(ActInfo[Timer]);
 			loop(i) if(InAct[i][ActIn])
@@ -307,11 +307,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 				SpawnPlayer(i);
 				ResetPlayerWeapons(i);
 				GivePlayerMoney(i, ActInfo[Reward]);
-<<<<<<< HEAD
     			Message(-1, Yellow, "!"green"$%s "yellow"εχιαμ ςμ λκ "red"\"%s\" "yellow"δξπφη ατςιμεϊ διπε", GetNum(ActInfo[Reward]), GetName(i));
-=======
-    			Message(-1, Yellow, "! "green"$%s "yellow"Χ•Χ§Χ™Χ‘Χ ΧΆΧ Χ›Χ "red"\"%s\" "yellow"Χ”ΧΧ Χ¦Χ— Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ”Χ™Χ Χ•", GetNum(ActInfo[Reward]), GetName(i));
->>>>>>> origin/master
 			}
 			ActInfo[Players] = 0;
 			ActInfo[Active] = 0;
@@ -343,19 +339,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
     if(dialogid == DIALOG_REWARD && !response) return CallLocalFunction("OnPlayerCommandText", "ds", playerid, "/startact");
     if(dialogid == DIALOG_REWARD && response)
     {
-<<<<<<< HEAD
         if(!strlen(inputtext)) return SendClientMessage(playerid, Red, ".δλπρ ΰϊ ρλεν δλρσ ωδεζλδ ιχαμ");
         ActInfo[Active] = ActInfo[ListItem];
-=======
-        if(!strlen(inputtext)) return SendClientMessage(playerid, Red, ".Χ”Χ›Χ Χ΅ ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ•Χ–Χ›Χ” Χ™Χ§Χ‘Χ");
-        if(ActInfo[ListItem] == 0) ActInfo[Active] = MiniActive;
-		else if(ActInfo[ListItem] == 1) ActInfo[Active] = WarActive;
-		else if(ActInfo[ListItem] == 2) ActInfo[Active] = SWarActive;
-		else if(ActInfo[ListItem] == 3) ActInfo[Active] = TWarActive;
-		else if(ActInfo[ListItem] == 4) ActInfo[Active] = BoomActive;
-		else if(ActInfo[ListItem] == 5) ActInfo[Active] = BazookaActive;
-
->>>>>>> origin/master
 		ActInfo[RandomNum] = random(80);
 
         if(ActInfo[Active] == MiniActive)
@@ -400,6 +385,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			SendClientMessageToAll(Orange, "------------- Chain -------------");
 		}
 
+        Message(-1, Orange, "/Join %d δτςιμεϊ δημδ! αλγι μδφθψσ δχω", ActInfo[RandomNum]);
+		Message(-1, Orange, "!"green"$%s "orange":τψρ μξπφη", GetNum(ActInfo[Reward]));
+		SendClientMessageToAll(Red, "!ξρτψ δξχεξεϊ ξεβαμ μωμεωιν ωηχπιν αμαγ, δψωξε ξδψ");
+		SendClientMessageToAll(Orange, "--------------------------------------");
+
 		if(ActInfo[Active] != 0)
 		{
 			KillTimer(ActInfo[Timer]);
@@ -409,11 +399,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			ActInfo[Timer] = SetTimer("StartACT", 850, 1);
 			ActInfo[CD] = 30;
 		}
-		
-		Message(-1, Orange, "/Join %d Χ”Χ¤ΧΆΧ™ΧΧ•Χª Χ”Χ—ΧΧ” ! - Χ‘Χ›Χ“Χ™ ΧΧ”Χ¨Χ©Χ ΧΧ¤ΧΆΧ™ΧΧ•Χª Χ”Χ§Χ©", ActInfo[RandomNum]);
-		Message(-1, Orange, "!Χ¤Χ¨Χ΅ ΧΧΧ Χ¦Χ—: %s$", GetNum(ActInfo[Reward]));
-		SendClientMessageToAll(Red, "!ΧΧ΅Χ¤Χ¨ Χ”ΧΧ§Χ•ΧΧ•Χª ΧΧ•Χ’Χ‘Χ ΧΧ©ΧΧ•Χ©Χ™Χ Χ©Χ—Χ§Χ Χ™Χ Χ‘ΧΧ‘Χ“, Χ”Χ¨Χ©ΧΧ• ΧΧ”Χ¨");
-		return SendClientMessageToAll(Orange, "--------------------------------------");
+		return 1;
     }
 	return 1;
 }
@@ -430,7 +416,7 @@ public StartACT()
 			ActInfo[Started] = false;
 			ActInfo[Players] = 0;
 			loop(i) InAct[i][ActIn] = false;
-			return SendClientMessageToAll(Red, ".Χ”Χ¤ΧΆΧ™ΧΧ•Χª Χ‘Χ•ΧΧΧ” ΧΧ›Χ™Χ•Χ•Χ Χ©ΧΧ™Χ ΧΧ΅Χ¤Χ™Χ§ ΧΧ©ΧªΧªΧ¤Χ™Χ");
+			return SendClientMessageToAll(Red, ".δτςιμεϊ αεθμδ ξλιεεο ωΰιο ξρτιχ ξωϊϊτιν");
 		}
 		ActInfo[Started] = true;
 		ActInfo[CD] = IN_ACT_START_TIME + 1;
@@ -558,7 +544,7 @@ public StartACT()
        	GameTextForAll(String, 1000, 4);
 		if(ActInfo[Players] == 30)
 		{
-			SendClientMessageToAll(Red, ".Χ›Χ Χ”ΧΧ§Χ•ΧΧ•Χª Χ‘Χ¤ΧΆΧ™ΧΧ•Χª Χ ΧªΧ¤Χ΅Χ•");
+			SendClientMessageToAll(Red, ".λμ δξχεξεϊ ατςιμεϊ πϊτρε");
 			ActInfo[Players] = 31;
 		}
     }
@@ -612,7 +598,7 @@ public IsPlayerInWater()
 	{
 	    DestroyVehicle(GetPlayerVehicleID(i));
 		SetPlayerHealth(i, 0.0);
-		SendClientMessage(i, -1, ".Χ Χ¤ΧΧª ΧΧΧ™Χ ΧΧ Χ”Χ¨Χ›Χ‘ Χ•ΧΧ›Χ Χ”Χ¤Χ΅Χ“Χª Χ‘Χ¤ΧΆΧ™ΧΧ•Χª, Χ‘Χ”Χ¦ΧΧ—Χ” Χ‘Χ¤ΧΆΧΧ™Χ Χ”Χ‘ΧΧ•Χª");
+		SendClientMessage(i, -1, ".πτμϊ μξιν ΰν δψλα εμλο δτργϊ ατςιμεϊ, αδφμηδ ατςξιν δαΰεϊ");
   	}
   	if(ActInfo[Active] == SWarActive) SetTimer("IsPlayerInWater", 800, 0);
 	return 1;
@@ -705,10 +691,10 @@ public AutoAct()
 			SendClientMessageToAll(Orange, "------------- Chain -------------");
 		}
 	}
-	Message(-1, Orange, "/Join %d Χ”Χ¤ΧΆΧ™ΧΧ•Χª Χ”Χ—ΧΧ” ! - Χ‘Χ›Χ“Χ™ ΧΧ”Χ¨Χ©Χ ΧΧ¤ΧΆΧ™ΧΧ•Χª Χ”Χ§Χ©", ActInfo[RandomNum]);
-	Message(-1, Orange, "!Χ¤Χ¨Χ΅ ΧΧΧ Χ¦Χ—: %s$", GetNum(ActInfo[Reward]));
-	SendClientMessageToAll(Red, "!ΧΧ΅Χ¤Χ¨ Χ”ΧΧ§Χ•ΧΧ•Χª ΧΧ•Χ’Χ‘Χ ΧΧ©ΧΧ•Χ©Χ™Χ Χ©Χ—Χ§Χ Χ™Χ Χ‘ΧΧ‘Χ“, Χ”Χ¨Χ©ΧΧ• ΧΧ”Χ¨");
-	SendClientMessageToAll(Orange, "----------------------------------");
+	Message(-1, Orange, "/Join %d δτςιμεϊ δημδ! αλγι μδφθψσ δχω", ActInfo[RandomNum]);
+	Message(-1, Orange, "!"green"$%s "orange":τψρ μξπφη", GetNum(ActInfo[Reward]));
+	SendClientMessageToAll(Red, "!ξρτψ δξχεξεϊ ξεβαμ μωμεωιν ωηχπιν αμαγ, δψωξε ξδψ");
+	SendClientMessageToAll(Orange, "--------------------------------------");
 	ActInfo[Timer] = SetTimer("StartACT", 850, 1);
 	ActInfo[CD] = 30;
 	return 1;
@@ -718,7 +704,7 @@ public AutoAct()
 public OnPlayerCommandText(playerid, cmdtext[])
 {
     if(!IsPlayerAdmin(playerid) && InAct[playerid][ActIn] && (strcmp("/twarplayers", cmdtext, true) || strcmp("/act", cmdtext, true) || IsPlayerAdmin(playerid) && strcmp("/stopact", cmdtext, true)))
-		return SendClientMessage(playerid, Red, ".ΧΧ™Χ Χ Χ™Χ›Χ•Χ ΧΧ‘Χ¦ΧΆ Χ¤Χ§Χ•Χ“Χ•Χª Χ›ΧΧ©Χ¨ ΧΧªΧ” Χ‘Χ¤ΧΆΧ™ΧΧ•Χª"), 0;
+		return SendClientMessage(playerid, Red, ".ΰιπκ ιλεμ μαφς τχεγεϊ λΰωψ ΰϊδ ατςιμεϊ"), 0;
 	dcmd(act, 3, cmdtext);
 	dcmd(startact, 8, cmdtext);
 	dcmd(stopact, 7, cmdtext);
@@ -749,58 +735,53 @@ dcmd_act(playerid, params[])
 	{
 	    case MiniActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Mini"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,Mini Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Mini"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,Mini Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Mini"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,Mini δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Mini"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,Mini δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case WarActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"War"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,War Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"War"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,War Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"War"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,War δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"War"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,War δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case SWarActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Sultan Wars"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,SWar Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Sultan Wars"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,SWar Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Sultan Wars"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,SWar δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Sultan Wars"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,SWar δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case TWarActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Team War"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,TWar Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Team War"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,TWar Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Team War"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,TWar δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Team War"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,TWar δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case BoomActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Boom"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,Boom Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Boom"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,Boom Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Boom"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,Boom δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Boom"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,Boom δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case BazookaActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Bazooka"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,Bazooka Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Bazooka"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,Bazooka Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Bazooka"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,Bazooka δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Bazooka"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,Bazooka δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    case FlameActive:
 	    {
-	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Flame"white"]\n%02d:%02d:%02d :Χ”Χ•Χ¤ΧΆΧΧ” ΧΧ•ΧΧ•ΧΧΧ™Χª ΧΆ\"Χ™ Χ”ΧΧΆΧ¨Χ›Χª Χ•Χ¤ΧΆΧ™ΧΧ” ,Flame Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second);
-	        else format(String, sizeof String, ""white"["orange"Flame"white"]\n%02d:%02d:%02d :Χ•Χ¤ΧΆΧ™ΧΧ” %s :Χ”Χ•Χ¤ΧΆΧΧ” ΧΆ\"Χ™ ,Flame Χ”Χ¤ΧΆΧ™ΧΧ•Χª", hour, minute, second, GetName(ActInfo[GA]));
+	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Flame"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,Flame δτςιμεϊ", hour, minute, second);
+	        else format(String, sizeof String, ""white"["orange"Flame"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,Flame δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
-<<<<<<< HEAD
 	    case ChainActive:
 	    {
 	        if(ActInfo[GA] == -1) format(String, sizeof String, ""white"["orange"Chain"white"]\n%02d:%02d:%02d :δετςμδ ΰεθεξθιϊ ς\"ι δξςψλϊ ετςιμδ ,Chain δτςιμεϊ", hour, minute, second);
 	        else format(String, sizeof String, ""white"["orange"Chain"white"]\n%02d:%02d:%02d :ετςιμδ %s :δετςμδ ς\"ι ,Chain δτςιμεϊ", hour, minute, second, GetName(ActInfo[GA]));
 	    }
 	    default: return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, "ξφα δτςιμειεϊ αωψϊ", ".ΰιο τςιμεϊ λψβς", "ΰιωεψ", "");
-=======
-	    default: return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, "ΧΧ¦Χ‘ Χ”Χ¤ΧΆΧ™ΧΧ•Χ™Χ•Χª Χ‘Χ©Χ¨Χª", ".ΧΧ™Χ Χ¤ΧΆΧ™ΧΧ•Χª Χ›Χ¨Χ’ΧΆ", "ΧΧ™Χ©Χ•Χ¨", "");
->>>>>>> origin/master
 	}
-	return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, "ΧΧ¦Χ‘ Χ”Χ¤ΧΆΧ™ΧΧ•Χ™Χ•Χª Χ‘Χ©Χ¨Χª", String, "ΧΧ™Χ©Χ•Χ¨", "");
+	return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, "ξφα δτςιμιεϊ αωψϊ", String, "ΰιωεψ", "");
 }
 
 dcmd_startact(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
 	if(ActInfo[Active] == MiniActive) Mini = " - "green"τεςμ"white"";
 	else if(ActInfo[Active] == WarActive) War = " - "green"τεςμ"white"";
 	else if(ActInfo[Active] == SWarActive) Swar = " - "green"τεςμ"white"";
@@ -812,24 +793,13 @@ dcmd_startact(playerid, params[])
 	String[0] = EOS;
 	format(String, sizeof String, "Minigun [/StartMini]%s\nWar [/StartWar]%s\nSultan Wars [/StartSWar]%s\nTeam War [/StartTWar]%s\nBoom [/StartBoom]%s\nBazooka [/StartBazooka]%s\nFlame [/StartFlame]%s\nChain [/StartChain]%s", Mini, War, Swar, Twar, Boom, Bazooka, Flame, Chain);
 	return ShowPlayerDialog(playerid, DIALOG_STARTACT, DIALOG_STYLE_LIST, "τςιμειεϊ", String, "δτςμ", "αιθεμ");
-=======
-	if(ActInfo[Active] == MiniActive) Mini = ""green"Χ¤Χ•ΧΆΧ"white"";
-	else if(ActInfo[Active] == WarActive) War = ""green"Χ¤Χ•ΧΆΧ"white"";
-	else if(ActInfo[Active] == SWarActive) Swar = ""green"Χ¤Χ•ΧΆΧ"white"";
-	else if(ActInfo[Active] == TWarActive) Twar = ""green"Χ¤Χ•ΧΆΧ"white"";
-	else if(ActInfo[Active] == BoomActive) Boom = ""green"Χ¤Χ•ΧΆΧ"white"";
-	else if(ActInfo[Active] == BazookaActive) Bazooka = ""green"Χ¤Χ•ΧΆΧ"white"";
-	String[0] = EOS;
-	format(String, sizeof String, "Minigun [/StartMini] - %s\nWar [/StartWar] - %s\nSultan Wars [/StartSWar] - %s\nTeam War [/StartTWar] - %s\nBoom [/StartBoom] - %s\nBazooka [/StartBazooka] - %s", Mini, War, Swar, Twar, Boom, Bazooka);
-	return ShowPlayerDialog(playerid, DIALOG_STARTACT, DIALOG_STYLE_LIST, "Χ¤ΧΆΧ™ΧΧ•Χ™Χ•Χª", String, "Χ”Χ¤ΧΆΧ", "Χ‘Χ™ΧΧ•Χ");
->>>>>>> origin/master
 }
 
 dcmd_stopact(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-    if(!ActInfo[Active]) return SendClientMessage(playerid, Red, ".ΧΧ™Χ Χ¤ΧΆΧ™ΧΧ•Χª Χ›Χ¨Χ’ΧΆ");
+    if(!ActInfo[Active]) return SendClientMessage(playerid, Red, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[Players] = 0;
 	ActInfo[GrovePlayers] = 0;
 	ActInfo[BallasPlayers] = 0;
@@ -846,19 +816,19 @@ dcmd_stopact(playerid, params[])
 		InAct[i][ActIn] = false;
 	}
 	ActInfo[Started] = false;
-	Message(-1, Red, ".Χ‘Χ™ΧΧ ΧΧª Χ”Χ¤ΧΆΧ™ΧΧ•Χª \"%s\" Χ”ΧΧ“ΧΧ™Χ", GetName(playerid));
+	Message(-1, Red, ".αιθμ ΰϊ δτςιμεϊ \"%s\" δΰγξιο", GetName(playerid));
 	return KillTimer(ActInfo[Timer]);
 }
 
 dcmd_join(playerid, params[])
 {
-	if(!ActInfo[Active]) return SendClientMessage(playerid, Red, ".ΧΧ™Χ Χ¤ΧΆΧ™ΧΧ•Χª Χ›ΧΆΧª");
-	if(ActInfo[Started]) return SendClientMessage(playerid, -1, ".Χ”Χ¤ΧΆΧ™ΧΧ•Χª Χ›Χ‘Χ¨ Χ”Χ—ΧΧ”");
-	if(ActInfo[Players] >= 30) return SendClientMessage(playerid, Red, ".Χ›Χ Χ”ΧΧ§Χ•ΧΧ•Χª Χ ΧªΧ¤Χ΅Χ•");
-	if(InAct[playerid][ActIn]) return  SendClientMessage(playerid, Red, ".Χ”Χ¦ΧΧ¨Χ¤Χª Χ›Χ‘Χ¨ ΧΧ¤ΧΆΧ™ΧΧ•Χª");
+	if(!ActInfo[Active]) return SendClientMessage(playerid, Red, ".ΰιο τςιμεϊ λςϊ");
+	if(ActInfo[Started]) return SendClientMessage(playerid, -1, ".ξφθςψιν, δτςιμεϊ λαψ δημδ");
+	if(ActInfo[Players] >= 30) return SendClientMessage(playerid, Red, ".ξφθςψιν, λμ δξχεξεϊ πϊτρε");
+	if(InAct[playerid][ActIn]) return  SendClientMessage(playerid, Red, ".δφθψτϊ λαψ μτςιμεϊ");
 	if(sscanf(params, "d", ActInfo[num]) || ActInfo[num] != ActInfo[RandomNum]) return Message(playerid, Red, "/Join %d", ActInfo[RandomNum]);
 	ActInfo[Players]++;
-	Message(playerid, Yellow, "[%d/30] .Χ”Χ¦ΧΧ¨Χ¤Χª ΧΧ¤ΧΆΧ™ΧΧ•Χª", ActInfo[Players]);
+	Message(playerid, Yellow, "[%d/30] .δφθψτϊ μτςιμεϊ", ActInfo[Players]);
 	if(ActInfo[Active] == TWarActive)
 	{
   		if(ActInfo[Players] % 2 == 0)
@@ -871,7 +841,7 @@ dcmd_join(playerid, params[])
 			ActInfo[BallasPlayers]++;
 			InAct[playerid][TWarPlayerID] = BallasTeam;
 		}
-		Message(playerid, -1, "%s", InAct[playerid][TWarPlayerID] == GroveTeam ? (""green"Grove :Χ§Χ‘Χ•Χ¦Χ”") : (""purple"Ballas :Χ§Χ‘Χ•Χ¦Χ”"));
+		SendClientMessage(playerid, -1, InAct[playerid][TWarPlayerID] == GroveTeam ? (""green"Grove :χαεφδ") : (""purple"Ballas :χαεφδ"));
 	}
 	return InAct[playerid][ActIn] = true, 1;
 }
@@ -881,15 +851,9 @@ dcmd_startmini(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = MiniActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Minigun", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελδ ιχαμ", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 0;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Minigun", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ” Χ™Χ§Χ‘Χ", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 //================================= [ War ] ====================================
@@ -897,15 +861,9 @@ dcmd_startwar(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = WarActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "War", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελδ ιχαμ", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 1;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "War", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ” Χ™Χ§Χ‘Χ", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 //============================ [ Sultan Wars ] =================================
@@ -913,15 +871,9 @@ dcmd_startswar(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = SWarActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Sultan Wars", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελδ ιχαμ", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 2;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Sultan Wars", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ” Χ™Χ§Χ‘Χ", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 //============================ [ Team War ] ====================================
@@ -929,26 +881,19 @@ dcmd_starttwar(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = TWarActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Team War", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελιν ιχαμε", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 3;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Team War", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ™Χ Χ™Χ§Χ‘ΧΧ•", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 dcmd_twarplayers(playerid, params[])
 {
     #pragma unused params
-    if(ActInfo[Active] != TWarActive) return SendClientMessage(playerid, -1, ".Χ”Χ¤ΧΆΧ™ΧΧ•Χª ΧΧ™Χ Χ” Χ¤Χ•ΧΆΧΧª Χ›Χ¨Χ’ΧΆ");
-    if(!ActInfo[Started]) return SendClientMessage(playerid, -1, ".Χ”Χ¤ΧΆΧ™ΧΧ•Χª ΧΧ™Χ Χ” Χ”Χ—ΧΧ”");
+    if(ActInfo[Active] != TWarActive) return SendClientMessage(playerid, -1, ".δτςιμεϊ ΰιπδ τςεμϊ λςϊ");
+    if(!ActInfo[Started]) return SendClientMessage(playerid, -1, ".δτςιμεϊ ςεγ μΰ δημδ");
     String[0] = EOS;
-	loop(i) if(InAct[i][ActIn])
-    	format(String, sizeof String, ""white"%s\nβ€Ά %s | %s", String, GetName(i), (GetPlayerTeam(i)) ? (""green"Grove") : (""purple"Ballas"));
-    return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, ""green"Team "red"War "white"Players", String, "ΧΧ™Χ©Χ•Χ¨", "");
+	loop(i) if(InAct[i][ActIn]) format(String, sizeof String, ""white"%s\n• %s | %s", String, GetName(i), (GetPlayerTeam(i)) ? (""green"Grove") : (""purple"Ballas"));
+    return ShowPlayerDialog(playerid, DIALOG_ACT, DIALOG_STYLE_MSGBOX, ""green"Team "red"War "white"Players", String, "ΰιωεψ", "");
 }
 
 //============================== [ Boom ] ======================================
@@ -956,15 +901,9 @@ dcmd_startboom(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = BoomActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Boom", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελδ ιχαμ", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 4;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Boom", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ” Χ™Χ§Χ‘Χ", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 //============================= [ Bazooka ] ====================================
@@ -972,15 +911,9 @@ dcmd_startbazooka(playerid, params[])
 {
     #pragma unused params
 	if(!IsPlayerAdmin(playerid)) return 0;
-<<<<<<< HEAD
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτςεμϊ, δξϊο μριεξδ");
+	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".ιω τςιμεϊ ωτεςμϊ, δξϊο μριεξδ");
 	ActInfo[ListItem] = BazookaActive;
 	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Bazooka", ".ΰπΰ δχω ΰϊ ρλεν δλρσ ωδζελδ ιχαμ", "δτςμ", "ηζψδ");
-=======
-	if(ActInfo[Active] != 0) return SendClientMessage(playerid, -1, ".Χ™Χ© Χ¤ΧΆΧ™ΧΧ•Χª Χ©Χ¤ΧΆΧ•ΧΧª, Χ”ΧΧªΧ ΧΧ΅Χ™Χ•ΧΧ”");
-	ActInfo[ListItem] = 5;
-	return ShowPlayerDialog(playerid, DIALOG_REWARD, DIALOG_STYLE_INPUT, "Bazooka", ".ΧΧ Χ Χ”Χ§Χ© ΧΧª Χ΅Χ›Χ•Χ Χ”Χ›Χ΅Χ£ Χ©Χ”Χ–Χ•Χ›Χ” Χ™Χ§Χ‘Χ", "Χ”Χ¤ΧΆΧ", "Χ—Χ–Χ¨Χ”");
->>>>>>> origin/master
 }
 
 //============================= [ Flame ] ====================================
